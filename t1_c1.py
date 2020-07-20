@@ -1,6 +1,15 @@
 import sys
 import math
-        
+
+def block_or_wait(clone_pos, clone_floor, object_pos, blocked_floor):
+    # block the floor when leftmost or rightmost position AND the floor isn't blocked
+    if (clone_pos < object_pos and direction == "LEFT") or \
+        (clone_pos > object_pos and direction == "RIGHT") and \
+            blocked_floor[clone_floor] == False:
+        return "BLOCK"
+    else:
+        return "WAIT"
+
 # Auto-generated code below aims at helping you parse
 # the standard input according to the problem statement.
 
@@ -39,15 +48,6 @@ while True:
     
     # empty decision, will be determined below
     decision = ""
-
-def block_or_wait(clone_pos, clone_floor, object_pos, blocked_floor):
-    # block the floor when leftmost or rightmost position AND the floor isn't blocked
-    if (clone_pos < object_pos and direction == "LEFT") or \
-        (clone_pos > object_pos and direction == "RIGHT") and \
-            blocked_floor[clone_floor] == False:
-        return "BLOCK"
-    else:
-        return "WAIT"
 
     # a clone is on a floor having an elevator: decision based on elevator's position
     if clone_floor in dict_elevator.keys():
